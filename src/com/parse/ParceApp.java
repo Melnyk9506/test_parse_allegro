@@ -38,8 +38,6 @@ public class ParceApp {
 		String size_of_discount;
 		Integer i = count;
 
-		
-		
 		name = temp.select("a[class=_w7z6o _uj8z7 meqh_en mpof_z0 mqu1_16 _9c44d_2vTdY m9qz_yq ]").text();
 		if(name.hashCode()==0) 
 		{name=temp.select("a[class=_w7z6o _uj8z7 meqh_en mpof_z0 mqu1_16 _9c44d_2vTdY  ]").text();}
@@ -74,8 +72,6 @@ public class ParceApp {
 		}
 		return count;
 	}
-	
-	
 	public static void writeInfo(String sb) {
 		try (PrintWriter writer = new PrintWriter(new File("test.csv"))) {
 
@@ -84,23 +80,18 @@ public class ParceApp {
 		      catch (FileNotFoundException e) {
 		          System.out.println(e.getMessage());
 		        }
-		
 	}
-	
 	public static String changePage(String url, int index) {
 		
 		url = url.replace(url.charAt(url.length()-1), (char) (index + '0'));
 		
 		return url;
 	}
-	
-	public static List<String[]> buffer() {
+	public static List<String[]> writeHead() {
 		List<String[]> sb = new ArrayList<>();
 		 String[] header = {"id", "name", "info", "size_of_discount","price","delivery","link"};
 		 sb.add(header);
-
-		return sb;
-		
+		return sb;	
 	}
 	public static void writeFile(List<String[]> sb) {
 		try (CSVWriter writer = new CSVWriter(new FileWriter("C:\\Users\\NiCE\\Desktop\\filecsv\\alegro.csv"))) {
@@ -121,8 +112,8 @@ public class ParceApp {
 		Document doc;
 		int count_of_products =1;
 		int index_of_page = 2;
-		List<String[]> sb = buffer();
-			for(int j=0;j<3;j++) {		
+		List<String[]> sb = writeHead();
+			for(int j=0;j<3;j++) {
 				for(int i = 0; i < 25; i++) {
 					doc = getWeb(url[j]);
 					count_of_products = getProductInfo(
@@ -135,10 +126,7 @@ public class ParceApp {
 					}
 					}
 			}
-		
 		writeFile(sb);
-
-			
 	}
 
 }
